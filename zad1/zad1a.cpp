@@ -4,21 +4,43 @@
 
 using namespace std;
 
-int main(){
-    ifstream input("./input.txt");
-    string line;
-    int najwieksza = 0;
-    int aktualna = 0;
-    while(getline(input,line)){
-        if (line.length() ==0){
-            if (aktualna>najwieksza){
-                najwieksza = aktualna;
-            }
-            aktualna=0;
-        }
-        aktualna+=
+int licz(ifstream &fin)
+{
+	int suma = 0;
+    int max[3];
+	string lic;
+	while(getline(fin,lic)){
+		if(lic.empty()){
+				if(suma>max[0]){
+					max[2]=max[1];
+                    max[1]=max[0];
+                    max[0]=suma;
+				}
+                else if(suma>max[1]){
+					max[2]=max[1];
+                    max[1]=suma;
+				}
+                else if(suma>max[2]){
+					max[2]=suma;
+				}
+				suma=0;
+                continue;
+		}
+		else{
+			suma+=stoi(lic);
+		}
+	}
+    suma=max[0]+max[1]+max[2];    
+	return suma;
+}
 
-    }
-    cout << najwieksza << endl;
-    return 0;
+int main()
+{
+	ifstream fin;
+	fin.open("input.txt");
+
+	cout<<licz(fin)<<endl;
+
+	fin.close();
+	return 0;
 }

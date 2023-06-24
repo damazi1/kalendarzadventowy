@@ -1,34 +1,34 @@
-#include <cstdlib>
-#include <fstream>
 #include <iostream>
+#include <fstream>
 #include <string>
+
+using namespace std;
+
+int licz(ifstream &fin)
+{
+	int suma = 0, max = suma;
+	string lic;
+	while(getline(fin,lic)){
+		if(lic.length()==0){
+				if(suma>max){
+					max=suma;
+				}
+				suma=0;
+		}
+		else{
+			suma+=stoi(lic);
+		}
+	}
+	return max;
+}
 
 int main()
 {
-	std::ifstream input("./input.txt");
+	ifstream fin;
+	fin.open("input.txt");
 
-	std::string line;
-	int current = 0;
-	int highest = 0;
-	while(std::getline(input, line))
-	{
-		if(line.length() == 0)
-		{
-			if(current > highest)
-			{
-				highest = current;
-			}
-			current = 0;
-		}
-		current += std::atoi(line.c_str());
-	}
-	input.close();
-	if(current > highest)
-	{
-		highest = current;
-	}
+	cout<<licz(fin)<<endl;
 
-	std::cout << "Total " << highest << " calories that elf carrying\n";
-
-	return EXIT_SUCCESS;
+	fin.close();
+	return 0;
 }
