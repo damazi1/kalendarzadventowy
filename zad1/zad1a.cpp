@@ -33,14 +33,13 @@ int licz(ifstream &fin)
     suma=max[0]+max[1]+max[2];    
 	return suma;
 }
-
 int main()
 {
 	ifstream fin;
 	fin.open("input.txt");
 
 	cout<<licz(fin)<<endl;
-
+	
 	fin.close();
 	return 0;
 }
