@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -20,9 +21,7 @@ int *ile(ifstream &in, int n)
         }
         else
         {
-            cout << s << endl;
             suma += stoi(s);
-            cout << suma << endl;
         }
     }
     return t;
@@ -30,8 +29,10 @@ int *ile(ifstream &in, int n)
 
 int main()
 {
-    ifstream in("input.txt");
-    int *t = ile(in, 300);
+    ifstream in("in.txt");
+    int *t = ile(in, 250);
+    sort(t,t+250);
+    cout<<t[247]<<'\n'<<t[248]<<'\n'<<t[249]<<endl;
     if (t)
     {
         delete[] t;
