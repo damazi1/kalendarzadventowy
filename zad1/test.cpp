@@ -13,7 +13,7 @@ int *ile(ifstream &in, int n)
     {
         if (s.length() == 0)
         {
-            cout << s a'<< endl;
+            cout << s << endl;
             t[i] = suma;
             i++;
             suma = 0;
