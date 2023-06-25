@@ -45,17 +45,41 @@ int contain(ifstream &fin)
     string liczby[4];
     while (fin >> str)
     {
+        bool prawda = false;
         licz(str, liczby);
-        if(stoi(liczby[0])>=stoi(liczby[2])&&stoi(liczby[1])<=stoi(liczby[3])||stoi(liczby[0])<=stoi(liczby[2])&&stoi(liczby[3])<=stoi(liczby[1]))
+        int dolna1 = stoi(liczby[0]);
+        int dolna2 = stoi(liczby[2]);
+        int gorna1 = stoi(liczby[1]);
+        int gorna2 = stoi(liczby[3]);
+        for (int i = dolna1; i <= gorna1; i++)
+        {
+            if (i >= dolna2&&i<=gorna2)
+            {
                 wynik++;
+                prawda = true;
+                break;
             }
+        }
+        if (!prawda)
+        {
+            for (int i = dolna2; i <= gorna2; i++)
+            {
+                if (i >= dolna1&&i<=gorna1)
+                {
+                    wynik++;
+                    prawda = true;
+                    break;
+                }
+            }
+        }
+    }
     return wynik;
 }
 
 int main()
 {
     ifstream fin("input.in");
-    cout<<contain(fin)<<endl;
+    cout << contain(fin) << endl;
     fin.close();
     return 0;
 }
